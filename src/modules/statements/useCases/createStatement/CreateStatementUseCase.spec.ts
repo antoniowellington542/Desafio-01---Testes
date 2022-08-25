@@ -10,11 +10,6 @@ describe("CreateStatementUseCase", ()=>{
   let inMemoryStatementsRepository: InMemoryStatementsRepository;
   let createStatementUseCase: CreateStatementUseCase;
 
-  enum OperationType {
-    DEPOSIT = 'deposit',
-    WITHDRAW = 'withdraw',
-  }
-
   beforeEach(()=>{
     inMemoryUsersRepository = new InMemoryUsersRepository();
     inMemoryStatementsRepository = new InMemoryStatementsRepository();
@@ -24,6 +19,10 @@ describe("CreateStatementUseCase", ()=>{
 
   it("should be abe create a statement with existent user", ()=>{
     expect(async()=>{
+      enum OperationType {
+        DEPOSIT = 'deposit',
+        WITHDRAW = 'withdraw',
+      }
       const statement: ICreateStatementDTO = {
         amount: 0,
         description: 'teste',
@@ -36,6 +35,10 @@ describe("CreateStatementUseCase", ()=>{
 
   it("should not be able withdraw with insufficient amount", ()=>{
     expect(async()=>{
+      enum OperationType {
+        DEPOSIT = 'deposit',
+        WITHDRAW = 'withdraw',
+      }
       const email = 'user@test.com';
       await inMemoryUsersRepository.create({
         name: 'user',
@@ -54,6 +57,10 @@ describe("CreateStatementUseCase", ()=>{
   });
 
   it("should be able create a new statement", async ()=>{
+    enum OperationType {
+      DEPOSIT = 'deposit',
+      WITHDRAW = 'withdraw',
+    }
     const email = 'user@test.com';
     await inMemoryUsersRepository.create({
       name: 'user',
